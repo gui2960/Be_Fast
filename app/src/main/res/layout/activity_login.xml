@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+
+    <EditText
+        android:id="@+id/editTextTextEmailAddress"
+        android:layout_width="294dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="58dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="59dp"
+        android:ems="10"
+        android:hint="@string/prompt_email"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logadoImagePerfil" />
+
+    <EditText
+        android:id="@+id/editTextTextPassword"
+        android:layout_width="294dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="58dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="59dp"
+        android:ems="10"
+        android:hint="@string/prompt_password"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
+
+    <ImageView
+        android:id="@+id/logadoImagePerfil"
+        android:layout_width="190dp"
+        android:layout_height="178dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginTop="99dp"
+        android:layout_marginEnd="117dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/vers_o_vertical" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="106dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="107dp"
+        android:text="@string/opcoes_registrar"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonLoginEntrar" />
+
+    <Button
+        android:id="@+id/buttonLoginEntrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="58dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="#790C5A"
+        android:text="@string/opcao_entrar"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+
+    <Button
+        android:id="@+id/buttonLoginRegistrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="86dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="59dp"
+        android:backgroundTint="#790C5A"
+        android:text="@string/opcao_registrar"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonLoginEntrar"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/buttonLogInGoogle"
+        android:layout_width="88dp"
+        android:layout_height="74dp"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="163dp"
+        android:background="@drawable/g"
+        android:backgroundTintMode="add"
+        android:foreground="@drawable/g"
+        android:hapticFeedbackEnabled="false"
+        app:buttonSize="icon_only"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

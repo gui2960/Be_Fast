@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "986864096269",
+    "project_id": "be-fast-64e9a",
+    "storage_bucket": "be-fast-64e9a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:986864096269:android:474583890122c5ff5af144",
+        "android_client_info": {
+          "package_name": "com.guilhermeluftlab.befast"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "986864096269-und893katks86rtlqgle52irgd50qvl1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.guilhermeluftlab.befast",
+            "certificate_hash": "7d5d9cd17fc8d16a6b82c4c51f1a0559599265b1"
+          }
+        },
+        {
+          "client_id": "986864096269-8q10tihdb2mk3sjbd7gprvc9jkg31edm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASxjfoLw7sv8UgVEjRk-k3Uxi3K8EHEto"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "986864096269-8q10tihdb2mk3sjbd7gprvc9jkg31edm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
