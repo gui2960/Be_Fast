@@ -1,13 +1,21 @@
 package com.guilhermeluftlab.befast;
 
+
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
-
+import com.google.firebase.auth.FirebaseUser;
+import com.guilhermeluftlab.befast.controllers.ControllerUser;
+import androidx.annotation.NonNull;
+import androidx.core.view.GravityCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -16,14 +24,17 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-public class UsuarioLogado extends AppCompatActivity {
-
+public class UsuarioLogado extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+    private TextView nomeHeader;
+    private ImageView perfilHeader;
     private AppBarConfiguration mAppBarConfiguration;
+    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_usuario_logado);
+        user = ControllerUser.getInstance().getUser();
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -39,12 +50,13 @@ public class UsuarioLogado extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_logout)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
     }
 
     @Override
@@ -60,4 +72,49 @@ public class UsuarioLogado extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+
+    public void updateNavHeader(){
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
+
+        nomeHeader = findViewById(R.id.navHeaderNome);
+        perfilHeader = findViewById(R.id.imageViewNavHeader);
+
+        String[] nome = user.getDisplayName().split(" ");
+        nomeHeader.setText(nome[0]);
+
+        Glide.with(this).load(user.getPhotoUrl()).into(perfilHeader);
+
+
+
+
+
+
+
+
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        if(id == R.id.nav_home){
+
+        }
+        else if(id == R.id.nav_gallery){
+
+        }
+        else if(id == R.id.nav_slideshow){
+
+        }
+        else if(id == R.id.nav_logout){
+
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
 }

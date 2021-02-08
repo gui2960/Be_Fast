@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.gallery.GalleryFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/regCompFotoPerfil"
+                android:layout_width="122dp"
+                android:layout_height="110dp"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="15dp"
+                app:srcCompat="@drawable/add_photo"
+                tools:srcCompat="@drawable/add_photo" />
+
+            <TextView
+                android:id="@+id/perfilNome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="60dp"
+                android:text="@string/reg_nome"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/perfilNome2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="60dp"
+                android:text="@string/reg_nome"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/perfilEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="60dp"
+                android:text="@string/reg_email"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/perfilEmail2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="60dp"
+                android:text="@string/reg_email"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/perfilDataNascimento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="60dp"
+                android:text="@string/reg_dataNascimento"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/perfilDataNascimento2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="60dp"
+                android:text="@string/reg_dataNascimento"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/perfilCelular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="60dp"
+                android:text="@string/reg_numCelular"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/perfilCelular2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="60dp"
+                android:text="@string/reg_numCelular"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/perfilSexo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="60dp"
+                android:text="Sexo"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/perfilSexo2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="60dp"
+                android:text="Sexo"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/perfilCEP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="60dp"
+                android:text="@string/reg_cep"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/perfilCEP2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="60dp"
+                android:text="@string/reg_cep"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/perfilLogradouro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="60dp"
+                android:text="@string/reg_logradouro"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/perfilLogradouro2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="60dp"
+                android:text="@string/reg_logradouro"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/perfilNumCasa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="60dp"
+                android:text="@string/reg_numCasa"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/perfilNumCasa2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="60dp"
+                android:text="@string/reg_numCasa"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/perfilComplemento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="60dp"
+                android:text="@string/reg_complemento"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/perfilComplemento2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="60dp"
+                android:text="@string/reg_complemento"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/perfilBairro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="60dp"
+                android:text="@string/reg_bairro"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/perfilBairro2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="60dp"
+                android:text="@string/reg_bairro"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/perfilCidade"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="60dp"
+                android:text="@string/reg_localidade"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/perfilCidade2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="60dp"
+                android:text="@string/reg_localidade"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/perfilUF"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="60dp"
+                android:text="@string/reg_uf"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/perfilUF2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="60dp"
+                android:text="@string/reg_uf"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/buttonEditarCadastro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="60dp"
+                android:backgroundTint="#790C5A"
+                android:text="@string/perfil_editar"
+                android:textColor="@color/white" />
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

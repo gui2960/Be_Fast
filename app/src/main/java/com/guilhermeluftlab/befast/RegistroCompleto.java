@@ -1,15 +1,18 @@
 package com.guilhermeluftlab.befast;
 
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.Activity;
-import android.content.ActivityNotFoundException;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;;
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.Editable;
@@ -21,7 +24,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import com.guilhermeluftlab.befast.controllers.ControllerUser;
 import com.guilhermeluftlab.befast.models.Endereco;
 import com.guilhermeluftlab.befast.models.Mask;
@@ -34,6 +36,8 @@ import java.util.regex.Pattern;
 
 public class RegistroCompleto extends AppCompatActivity {
     public static final int IMAGEM_INTERNA = 1;
+    static int PReqCode = 1;
+    static int REQUESTCODE = 1;
     private EditText nome;
     private EditText senha;
     private EditText email;
@@ -55,15 +59,17 @@ public class RegistroCompleto extends AppCompatActivity {
     private Button finalizar;
     private String pathImg;
     private String resposta;
+    private Uri selectedImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //getSupportActionBar().hide();
         setContentView(R.layout.activity_registro_completo);
 
 
         //Dados Cliente
-        perfil =  findViewById(R.id.regCompFotoPerfil);
+        perfil =  findViewById(R.id.regComFotoPerfil);
         nome =  findViewById(R.id.regCompNome);
         senha =  findViewById(R.id.regCompSenha);
         email =  findViewById(R.id.regCompEmail);
@@ -78,9 +84,8 @@ public class RegistroCompleto extends AppCompatActivity {
         estado =  findViewById(R.id.regCompUf);
 
         spinner =  findViewById(R.id.regCompSexo);
-        pegarProfPic =  findViewById(R.id.regCompBuscarImagem);
         esqueciCep =  findViewById(R.id.buttonEsqueciCep);
-        finalizar = findViewById(R.id.buttonFinalizarCadastro);
+        finalizar = findViewById(R.id.buttonEditarCadastro);
 
         //Criando o Spinner e adicionando as strings
         adapter = ArrayAdapter.createFromResource(this, R.array.sexo_usuario, android.R.layout.simple_spinner_item);
@@ -161,20 +166,19 @@ public class RegistroCompleto extends AppCompatActivity {
             }
         });
 
-        //Buscando imagem
-        pegarProfPic.setOnClickListener(new View.OnClickListener() {
+        //Buscar Imagem
+        perfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Intent.ACTION_PICK,
-                        android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI);
-                startActivityForResult(Intent.createChooser(i, "Selecione uma imagem"), IMAGEM_INTERNA);
+                if(Build.VERSION.SDK_INT >= 22){
+                    checkAndRequestForPermission();
+                }
+                else{
+                    openGallery();
+                }
 
             }
-
-
         });
-
-
 
 
         //Buscando cep
@@ -201,21 +205,37 @@ public class RegistroCompleto extends AppCompatActivity {
 
     }
 
+    private void openGallery() {
+        //TODO: open gallery intent and wait for user to pick an image!
+        Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
+        galleryIntent.setType("image/*");
+        startActivityForResult(galleryIntent, REQUESTCODE);
+
+    }
+
+    private void checkAndRequestForPermission() {
+
+        if(ContextCompat.checkSelfPermission(RegistroCompleto.this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED){
+            if(ActivityCompat.shouldShowRequestPermissionRationale(RegistroCompleto.this, Manifest.permission.READ_EXTERNAL_STORAGE)){
+                Toast.makeText(RegistroCompleto.this, "Por favor, aceite!", Toast.LENGTH_SHORT). show();
+            }
+            else{
+                ActivityCompat.requestPermissions(RegistroCompleto.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, PReqCode);
+            }
+        }
+        else{
+            openGallery();
+        }
+
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-            if(requestCode == IMAGEM_INTERNA){
-                Uri selectedImage = data.getData();
-                String[] colunas = {MediaStore.Images.Media.DATA};
-                Cursor cursor = getContentResolver().query(selectedImage, colunas, null, null, null);
-                cursor.moveToFirst();
-                int indexColuna = cursor.getColumnIndex(colunas[0]);
-                pathImg = cursor.getString(indexColuna);
-                cursor.close();
-
-                Bitmap bitmap = BitmapFactory.decodeFile(pathImg);
-                perfil.setImageBitmap(bitmap);
-
+            if(requestCode == REQUESTCODE && data != null){
+                selectedImage = data.getData();
+                perfil.setImageURI(selectedImage);
                 Toast.makeText(getApplicationContext(), selectedImage.toString(), Toast.LENGTH_SHORT).show();
             }
 
@@ -253,7 +273,7 @@ public class RegistroCompleto extends AppCompatActivity {
         Endereco endereco = new Endereco();
 
         //Usuario
-        usuario.setFotoPerfil(pathImg);
+        usuario.setFotoPerfil(selectedImage.toString());
         usuario.setNome(nome.getText().toString());
         usuario.setEmail(email.getText().toString());
         usuario.setSenha(senha.getText().toString());
@@ -290,5 +310,6 @@ public class RegistroCompleto extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), resposta, Toast.LENGTH_LONG).show();
 
     }
+
 
 }

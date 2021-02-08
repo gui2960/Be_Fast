@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".LoginActivity">
 
     <EditText
@@ -19,20 +20,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logadoImagePerfil" />
-
-    <EditText
-        android:id="@+id/editTextTextPassword"
-        android:layout_width="294dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="58dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginEnd="59dp"
-        android:ems="10"
-        android:hint="@string/prompt_password"
-        android:inputType="textEmailAddress"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
 
     <ImageView
         android:id="@+id/logadoImagePerfil"
@@ -64,7 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="58dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="39dp"
         android:backgroundTint="#790C5A"
         android:text="@string/opcao_entrar"
         android:textColor="@color/white"
@@ -76,7 +63,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="86dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="39dp"
         android:layout_marginEnd="59dp"
         android:backgroundTint="#790C5A"
         android:text="@string/opcao_registrar"
@@ -100,5 +87,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <EditText
+        android:id="@+id/editTextTextPassword"
+        android:layout_width="294dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="58dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="59dp"
+        android:ems="10"
+        android:hint="@string/reg_senha"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

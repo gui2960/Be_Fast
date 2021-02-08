@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.guilhermeluftlab.befast.controllers.ControllerUser;
+import com.guilhermeluftlab.befast.models.Usuario;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -16,7 +17,6 @@ public class LoginActivity extends AppCompatActivity {
     private TextView senha;
     private Button entrar;
     private Button registrar;
-    private String resposta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,5 +47,15 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if(ControllerUser.getInstance().getUser() != null) {
+            startActivity(new Intent(getApplicationContext(), UsuarioLogado.class));
+            finish();
+        }
     }
 }

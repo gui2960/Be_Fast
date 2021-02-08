@@ -17,7 +17,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
+
 
         mainButton = findViewById(R.id.buttonMain);
         mainButton.setOnClickListener(new View.OnClickListener() {
@@ -29,11 +31,4 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        firebaseUser = ControllerUser.getInstance().getUser();
-
-
-    }
 }
