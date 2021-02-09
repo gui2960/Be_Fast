@@ -24,11 +24,14 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-public class UsuarioLogado extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+import de.hdodenhof.circleimageview.CircleImageView;
+
+public class UsuarioLogado extends AppCompatActivity {
     private TextView nomeHeader;
-    private ImageView perfilHeader;
+    private CircleImageView perfilHeader;
     private AppBarConfiguration mAppBarConfiguration;
     private FirebaseUser user;
+    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +49,7 @@ public class UsuarioLogado extends AppCompatActivity implements NavigationView.O
             }
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -56,6 +59,8 @@ public class UsuarioLogado extends AppCompatActivity implements NavigationView.O
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+        
+        updateNavHeader();
 
     }
 
@@ -75,11 +80,11 @@ public class UsuarioLogado extends AppCompatActivity implements NavigationView.O
 
 
     public void updateNavHeader(){
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
 
-        nomeHeader = findViewById(R.id.navHeaderNome);
-        perfilHeader = findViewById(R.id.imageViewNavHeader);
+        nomeHeader = headerView.findViewById(R.id.navHeaderNome);
+        perfilHeader = (CircleImageView) headerView.findViewById(R.id.imageViewNavHeader);
 
         String[] nome = user.getDisplayName().split(" ");
         nomeHeader.setText(nome[0]);
@@ -95,26 +100,5 @@ public class UsuarioLogado extends AppCompatActivity implements NavigationView.O
 
     }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-
-        if(id == R.id.nav_home){
-
-        }
-        else if(id == R.id.nav_gallery){
-
-        }
-        else if(id == R.id.nav_slideshow){
-
-        }
-        else if(id == R.id.nav_logout){
-
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
 
 }

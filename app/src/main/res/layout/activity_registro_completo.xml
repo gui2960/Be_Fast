@@ -18,11 +18,12 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/regComFotoPerfil"
                 android:layout_width="180dp"
                 android:layout_height="144dp"
                 android:layout_marginStart="30dp"
+                android:layout_marginTop="15dp"
                 android:contentDescription="Adicione foto de perfil"
                 android:foregroundTint="#00FFFFFF"
                 android:src="@drawable/foto_perfil" />

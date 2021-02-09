@@ -34,6 +34,8 @@ import com.guilhermeluftlab.befast.models.endereco.ZipCodeListener;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class RegistroCompleto extends AppCompatActivity {
     public static final int IMAGEM_INTERNA = 1;
     static int PReqCode = 1;
@@ -52,24 +54,20 @@ public class RegistroCompleto extends AppCompatActivity {
     private EditText estado;
     private Spinner spinner;
     private Button esqueciCep;
-    private Button pegarProfPic;
-    private ImageView perfil;
+    private CircleImageView perfil;
     private ArrayAdapter adapter;
     private Util util;
     private Button finalizar;
-    private String pathImg;
-    private String resposta;
     private Uri selectedImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //getSupportActionBar().hide();
         setContentView(R.layout.activity_registro_completo);
 
 
         //Dados Cliente
-        perfil =  findViewById(R.id.regComFotoPerfil);
+        perfil = findViewById(R.id.regComFotoPerfil);
         nome =  findViewById(R.id.regCompNome);
         senha =  findViewById(R.id.regCompSenha);
         email =  findViewById(R.id.regCompEmail);
