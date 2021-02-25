@@ -26,7 +26,8 @@
                 android:layout_marginTop="15dp"
                 android:contentDescription="Adicione foto de perfil"
                 android:foregroundTint="#00FFFFFF"
-                android:src="@drawable/perfil" />
+                android:visibility="gone"
+                app:srcCompat="@drawable/perfil" />
 
             <TextView
                 android:id="@+id/perfilNome"
@@ -36,7 +37,9 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="60dp"
                 android:text="@string/reg_nome"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/perfilNome2"
@@ -46,7 +49,8 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="60dp"
                 android:text="@string/reg_nome"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/perfilEmail"
@@ -56,7 +60,9 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="60dp"
                 android:text="@string/reg_email"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/perfilEmail2"
@@ -66,7 +72,8 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="60dp"
                 android:text="@string/reg_email"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/perfilDataNascimento"
@@ -76,7 +83,16 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="60dp"
                 android:text="@string/reg_dataNascimento"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <ProgressBar
+                android:id="@+id/progressBarPerfil"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible" />
 
             <TextView
                 android:id="@+id/perfilDataNascimento2"
@@ -86,7 +102,8 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="60dp"
                 android:text="@string/reg_dataNascimento"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/perfilCelular"
@@ -96,7 +113,9 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="60dp"
                 android:text="@string/reg_numCelular"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/perfilCelular2"
@@ -106,7 +125,8 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="60dp"
                 android:text="@string/reg_numCelular"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/perfilSexo"
@@ -116,7 +136,9 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="60dp"
                 android:text="Sexo"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/perfilSexo2"
@@ -126,7 +148,8 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="60dp"
                 android:text="Sexo"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/perfilCEP"
@@ -136,7 +159,9 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="60dp"
                 android:text="@string/reg_cep"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/perfilCEP2"
@@ -146,7 +171,8 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="60dp"
                 android:text="@string/reg_cep"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/perfilLogradouro"
@@ -156,7 +182,9 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="60dp"
                 android:text="@string/reg_logradouro"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/perfilLogradouro2"
@@ -166,7 +194,8 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="60dp"
                 android:text="@string/reg_logradouro"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/perfilNumCasa"
@@ -176,7 +205,9 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="60dp"
                 android:text="@string/reg_numCasa"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/perfilNumCasa2"
@@ -186,7 +217,8 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="60dp"
                 android:text="@string/reg_numCasa"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/perfilComplemento"
@@ -196,7 +228,9 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="60dp"
                 android:text="@string/reg_complemento"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/perfilComplemento2"
@@ -206,7 +240,8 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="60dp"
                 android:text="@string/reg_complemento"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/perfilBairro"
@@ -216,7 +251,9 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="60dp"
                 android:text="@string/reg_bairro"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/perfilBairro2"
@@ -226,7 +263,8 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="60dp"
                 android:text="@string/reg_bairro"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/perfilCidade"
@@ -236,7 +274,9 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="60dp"
                 android:text="@string/reg_localidade"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/perfilCidade2"
@@ -246,7 +286,8 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="60dp"
                 android:text="@string/reg_localidade"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/perfilUF"
@@ -256,7 +297,9 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="60dp"
                 android:text="@string/reg_uf"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/perfilUF2"
@@ -266,7 +309,8 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="60dp"
                 android:text="@string/reg_uf"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:visibility="gone" />
 
             <Button
                 android:id="@+id/buttonEditarCadastro"
@@ -277,7 +321,9 @@
                 android:layout_marginEnd="60dp"
                 android:backgroundTint="#790C5A"
                 android:text="@string/perfil_editar"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:visibility="gone" />
+
         </LinearLayout>
     </ScrollView>
 

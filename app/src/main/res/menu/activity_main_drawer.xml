@@ -18,9 +18,14 @@
             android:title="@string/menu_slideshow" />
 
         <item
+            android:id="@+id/servicos_logado"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_servicos" />
+
+        <item
             android:id="@+id/nav_logout"
             android:icon="?attr/actionModeCloseDrawable"
-            android:title="Sair" />
+            android:title="@string/menu_sair"/>
     </group>
 
 

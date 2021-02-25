@@ -16,6 +16,9 @@ public class ControllerUser implements Users {
         return controllerUser;
     }
 
+    public void logOut(){
+        UsuarioDAO.getInstance().logOut();
+    }
 
     @Override
     public void saveUser(Usuario usuario) {

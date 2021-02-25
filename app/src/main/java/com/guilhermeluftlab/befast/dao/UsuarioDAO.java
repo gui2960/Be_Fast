@@ -57,18 +57,20 @@ public class UsuarioDAO {
     }
 
     public Usuario getDadosUsuario(String uid){
-        mDatabase.child("Usuario").child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+        ValueEventListener userListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                usuario = (Usuario) snapshot.getValue();
+                Iterable<DataSnapshot> children = snapshot.getChildren();
+                for(DataSnapshot a : children)
+                    if(a.getKey().equals(uid))
+                        usuario = a.getValue(Usuario.class);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        });
-
+        };
 
         return usuario;
     }
@@ -105,4 +107,10 @@ public class UsuarioDAO {
     public FirebaseUser getUser(){
         return mAuth.getCurrentUser();
     }
+
+    public void logOut(){
+        mAuth.signOut();
+
+    }
+
 }

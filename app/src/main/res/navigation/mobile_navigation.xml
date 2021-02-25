@@ -22,4 +22,10 @@
         android:name="com.guilhermeluftlab.befast.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+
+    <fragment
+        android:id="@+id/servicos_logado"
+        android:name="com.guilhermeluftlab.befast.ui.servicos.ServicosLogadoFragment"
+        android:label="@string/menu_servicos"
+        tools:layout="@layout/main_fragment" />
 </navigation>

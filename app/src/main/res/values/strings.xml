@@ -10,7 +10,9 @@
 
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Perfil</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_slideshow">Agenda</string>
+    <string name="menu_servicos">Serviços</string>
+    <string name="menu_sair">Sair</string>
 
 
     <string name="prompt_email">Email</string>
@@ -54,6 +56,8 @@
     <string name="badly_email">Email Inválido</string>
     <string name="conexao_perdida">Sem conexão com a Internet</string>
     <string name="salvar_ok">Cadastro realizado com sucesso!</string>
-
-
+    <string name="dados_invalidos">Email ou senhas inválidos!</string>
+    <string name="sessao_iniciada">Sessão Iniciada!</string>
+    <string name="registro_cadastrando">Cadastrando...!</string>
+    <string name="deu_merda">Deu merda...!</string>
 </resources>

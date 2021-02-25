@@ -1,35 +1,48 @@
 package com.guilhermeluftlab.befast;
 
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;;
 import android.Manifest;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.guilhermeluftlab.befast.controllers.ControllerUser;
 import com.guilhermeluftlab.befast.models.Endereco;
 import com.guilhermeluftlab.befast.models.Mask;
 import com.guilhermeluftlab.befast.models.Usuario;
 import com.guilhermeluftlab.befast.models.endereco.Util;
 import com.guilhermeluftlab.befast.models.endereco.ZipCodeListener;
+import com.guilhermeluftlab.befast.ui.gallery.UpdateUser;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -59,6 +72,7 @@ public class RegistroCompleto extends AppCompatActivity {
     private Util util;
     private Button finalizar;
     private Uri selectedImage;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +98,7 @@ public class RegistroCompleto extends AppCompatActivity {
         spinner =  findViewById(R.id.regCompSexo);
         esqueciCep =  findViewById(R.id.buttonEsqueciCep);
         finalizar = findViewById(R.id.buttonEditarCadastro);
+        progressBar = findViewById(R.id.progressBarCadastro);
 
         //Criando o Spinner e adicionando as strings
         adapter = ArrayAdapter.createFromResource(this, R.array.sexo_usuario, android.R.layout.simple_spinner_item);
@@ -193,13 +208,10 @@ public class RegistroCompleto extends AppCompatActivity {
         finalizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ControllerUser.getInstance().saveUser(setUsuario());
-                Toast.makeText(getApplicationContext(), R.string.salvar_ok, Toast.LENGTH_LONG).show();
-                startActivity(new Intent(getApplicationContext(), UsuarioLogado.class));
+                createAccount(setUsuario());
 
             }
         });
-
 
     }
 
@@ -260,7 +272,6 @@ public class RegistroCompleto extends AppCompatActivity {
     }
 
 
-
     private void setField(int id, String data){
         ((EditText) findViewById(id)).setText(data);
 
@@ -286,12 +297,15 @@ public class RegistroCompleto extends AppCompatActivity {
         endereco.setBairro(bairro.getText().toString());
         endereco.setLocalidade(cidade.getText().toString());
         endereco.setUf(estado.getText().toString());
+        endereco.setNumResidencia(numeroResidencia.getText().toString());
 
         //Finalizando
         usuario.setEndereco(endereco);
 
         return usuario;
     }
+
+
 
     private void opcoesErro(String resposta){
 
@@ -308,6 +322,112 @@ public class RegistroCompleto extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), resposta, Toast.LENGTH_LONG).show();
 
     }
+
+
+    private void createAccount(Usuario usuario) {
+        final ProgressDialog progressDialog = new ProgressDialog(RegistroCompleto.this);
+        progressDialog.setIndeterminate(false);
+        progressDialog.setMessage("Cadastrando...");
+        progressDialog.show();
+        FirebaseAuth.getInstance().createUserWithEmailAndPassword(usuario.getEmail(),usuario.getSenha()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    progressDialog.dismiss();
+                    salvarConta(usuario);
+                    finish();
+
+                }else{
+                    progressDialog.dismiss();
+                    Toast.makeText(RegistroCompleto.this,R.string.deu_merda,Toast.LENGTH_SHORT).show();
+                    Log.i("Criando","MaldatosH2");
+                }
+            }
+        });
+    }
+
+    private void storageUserImage(Usuario usuario){
+        final ProgressDialog progressDialog = new ProgressDialog(RegistroCompleto.this);
+        progressDialog.setIndeterminate(false);
+        progressDialog.setMessage("Salvando foto...");
+        progressDialog.show();
+
+        StorageReference mStorage = FirebaseStorage.getInstance().getReference().child("Usuario_Fotos");
+
+        StorageReference imageFilePath = mStorage.child(Uri.parse(usuario.getFotoPerfil()).getLastPathSegment());
+        imageFilePath.putFile(Uri.parse(usuario.getFotoPerfil())).addOnCompleteListener(this, new OnCompleteListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                if(task.isSuccessful()) {
+                    progressDialog.dismiss();
+                    updateUI(usuario);
+                    finish();
+                }
+                else{
+                    progressDialog.dismiss();
+                    Toast.makeText(RegistroCompleto.this,R.string.deu_merda,Toast.LENGTH_SHORT).show();
+                    Log.i("Storage","MaldatosH2");
+                }
+            }
+        });
+    }
+    private void salvarConta(Usuario usuario){
+        final ProgressDialog progressDialog = new ProgressDialog(RegistroCompleto.this);
+        progressDialog.setIndeterminate(false);
+        progressDialog.setMessage("Registrando...");
+        progressDialog.show();
+        FirebaseDatabase.getInstance().getReference().child("Usuario").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(usuario).addOnCompleteListener(this, new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()) {
+                    progressDialog.dismiss();
+                    updateUI(usuario);
+                    finish();
+                } else{
+                    progressDialog.dismiss();
+                    Toast.makeText(RegistroCompleto.this,R.string.deu_merda,Toast.LENGTH_SHORT).show();
+                    Log.i("Saving","MaldatosH2");
+                }
+            }
+        });
+
+
+
+    }
+
+    private void updateUI(Usuario usuario){
+        final ProgressDialog progressDialog = new ProgressDialog(RegistroCompleto.this);
+        progressDialog.setIndeterminate(false);
+        progressDialog.setMessage("UpdateUI...");
+        progressDialog.show();
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                .setDisplayName(usuario.getNome())
+                .setPhotoUri(Uri.parse(usuario.getFotoPerfil()))
+                .build();
+
+        user.updateProfile(profileUpdates)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            progressDialog.dismiss();
+                            Intent intent = new Intent(getApplicationContext(),UsuarioLogado.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                        else{
+                            progressDialog.dismiss();
+                            Toast.makeText(RegistroCompleto.this,R.string.deu_merda,Toast.LENGTH_SHORT).show();
+                            Log.i("UpdateUI","MaldatosH2");
+                        }
+                    }
+                });
+
+    }
+
+
 
 
 }

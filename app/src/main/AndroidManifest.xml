@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BeFast">
-        <activity android:name=".RegistroCompleto"></activity>
+        <activity android:name=".ServicosLogado"></activity>
+        <activity android:name=".RegistroCompleto" />
         <activity android:name=".LoginActivity" />
         <activity
             android:name=".UsuarioLogado"

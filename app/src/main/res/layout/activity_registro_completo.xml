@@ -195,6 +195,13 @@
                 android:hint="@string/reg_uf"
                 android:inputType="textPersonName" />
 
+            <ProgressBar
+                android:id="@+id/progressBarCadastro"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
             <Button
                 android:id="@+id/buttonEditarCadastro"
                 android:layout_width="match_parent"
@@ -205,12 +212,6 @@
                 android:backgroundTint="#790C5A"
                 android:text="@string/reg_finalizarCadastro"
                 android:textColor="@color/white" />
-
-            <ProgressBar
-                android:id="@+id/progressBar"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
 
         </LinearLayout>
     </ScrollView>

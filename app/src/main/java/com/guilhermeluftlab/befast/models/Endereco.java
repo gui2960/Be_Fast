@@ -7,8 +7,13 @@ public class Endereco {
     private String bairro;
     private String localidade;
     private String uf;
+    private String numResidencia;
 
 
+
+    public void setNumResidencia(String numResidencia) {
+        this.numResidencia = numResidencia;
+    }
 
     public void setCep(String cep) {
         this.cep = cep;
@@ -56,5 +61,9 @@ public class Endereco {
 
     public String getUf() {
         return uf;
+    }
+
+    public String getNumResidencia() {
+        return numResidencia;
     }
 }
