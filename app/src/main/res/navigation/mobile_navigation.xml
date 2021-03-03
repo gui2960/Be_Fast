@@ -28,4 +28,11 @@
         android:name="com.guilhermeluftlab.befast.ui.servicos.ServicosLogadoFragment"
         android:label="@string/menu_servicos"
         tools:layout="@layout/main_fragment" />
+
+    <fragment
+        android:id="@+id/nav_edtServ"
+        android:name="com.guilhermeluftlab.befast.ui.editServ.EditServicosUsuario"
+        android:label="EdtServ"
+        tools:layout="@layout/edit_servicos_usuario_fragment" />
+
 </navigation>

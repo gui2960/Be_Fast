@@ -360,7 +360,6 @@ public class RegistroCompleto extends AppCompatActivity {
             public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                 if(task.isSuccessful()) {
                     progressDialog.dismiss();
-                    updateUI(usuario);
                     finish();
                 }
                 else{
@@ -381,7 +380,8 @@ public class RegistroCompleto extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()) {
                     progressDialog.dismiss();
-                    updateUI(usuario);
+                    Intent intent = new Intent(getApplicationContext(),UsuarioLogado.class);
+                    startActivity(intent);
                     finish();
                 } else{
                     progressDialog.dismiss();
@@ -395,37 +395,7 @@ public class RegistroCompleto extends AppCompatActivity {
 
     }
 
-    private void updateUI(Usuario usuario){
-        final ProgressDialog progressDialog = new ProgressDialog(RegistroCompleto.this);
-        progressDialog.setIndeterminate(false);
-        progressDialog.setMessage("UpdateUI...");
-        progressDialog.show();
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                .setDisplayName(usuario.getNome())
-                .setPhotoUri(Uri.parse(usuario.getFotoPerfil()))
-                .build();
-
-        user.updateProfile(profileUpdates)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            progressDialog.dismiss();
-                            Intent intent = new Intent(getApplicationContext(),UsuarioLogado.class);
-                            startActivity(intent);
-                            finish();
-                        }
-                        else{
-                            progressDialog.dismiss();
-                            Toast.makeText(RegistroCompleto.this,R.string.deu_merda,Toast.LENGTH_SHORT).show();
-                            Log.i("UpdateUI","MaldatosH2");
-                        }
-                    }
-                });
-
-    }
 
 
 

@@ -1,7 +1,9 @@
 package com.guilhermeluftlab.befast;
 
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
@@ -14,7 +16,13 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
+import com.guilhermeluftlab.befast.async.UpdateUI;
 import com.guilhermeluftlab.befast.controllers.ControllerUser;
+import com.guilhermeluftlab.befast.models.Usuario;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.navigation.NavController;
@@ -33,6 +41,8 @@ public class UsuarioLogado extends AppCompatActivity {
     private CircleImageView perfilHeader;
     private AppBarConfiguration mAppBarConfiguration;
     NavigationView navigationView;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,6 +125,7 @@ public class UsuarioLogado extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         navigationView = findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
+        user.reload();
 
         nomeHeader = headerView.findViewById(R.id.navHeaderNome);
         perfilHeader = (CircleImageView) headerView.findViewById(R.id.imageViewNavHeader);
@@ -126,6 +137,23 @@ public class UsuarioLogado extends AppCompatActivity {
 
 
     }
+
+    public void updateNavHeaderTest(Usuario usuario){
+        navigationView = findViewById(R.id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
+
+        nomeHeader = headerView.findViewById(R.id.navHeaderNome);
+        perfilHeader = (CircleImageView) headerView.findViewById(R.id.imageViewNavHeader);
+
+        String[] nome = usuario.getNome().split(" ");
+        nomeHeader.setText(nome[0]);
+        Glide.with(this).load(Uri.parse(usuario.getFotoPerfil())).into(perfilHeader);
+
+
+
+    }
+
+
 
     public void logout(){
         FirebaseAuth.getInstance().signOut();

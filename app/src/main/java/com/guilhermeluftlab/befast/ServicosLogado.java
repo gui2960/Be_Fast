@@ -17,5 +17,9 @@ public class ServicosLogado extends AppCompatActivity {
                     .replace(R.id.container, ServicosLogadoFragment.newInstance())
                     .commitNow();
         }
+
+
+
+
     }
 }

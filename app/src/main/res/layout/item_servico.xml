@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="20dp">
+
+
+    <TextView
+        android:id = "@+id/text_titulo_servico"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Corte de Cabelo" />
+
+    <TextView
+        android:id = "@+id/valor_servico"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Valor: R$ 10.00" />
+
+
+    <TextView
+        android:id = "@+id/tempo_servico"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Tempo: 20 minutos" />
+
+
+</LinearLayout>

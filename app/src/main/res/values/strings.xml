@@ -26,6 +26,8 @@
     <string name="opcoes_registrar">.......ou continue com.......</string>
     <string name="opcao_entrar">Entrar</string>
     <string name="opcao_registrar">Registrar</string>
+    <string name="toggle_show">MOSTRAR</string>
+    <string name="toggle_hide">ESCONDER</string>
 
     <!--"Dados do Usuário" -->
     <string name="reg_foto">Foto de perfil</string>
@@ -50,6 +52,8 @@
     <string name="reg_uf">UF (Estado)</string>
     <string name="reg_finalizarCadastro">Finalizar Cadastro</string>
     <string name="perfil_editar">Editar Perfil</string>
+    <string name="servicos_null">Nenhum serviço cadastrado</string>
+    <string name="reg_servicos">Adicionar um Serviço</string>
 
 
     <string name="senha_pequena">Senha precisa ter ao menos 6 digítos</string>

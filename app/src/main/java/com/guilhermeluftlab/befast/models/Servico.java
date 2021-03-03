@@ -2,15 +2,14 @@ package com.guilhermeluftlab.befast.models;
 
 public class Servico {
     private String nome;
-    private double valor;
-    private int tempoMinutos;
+    private String valor;
+    private String tempoMinutos;
 
-    public Servico(String nome, double valor, int tempoMinutos) {
+    public Servico(String nome, String valor, String tempoMinutos) {
         this.nome = nome;
         this.valor = valor;
         this.tempoMinutos = tempoMinutos;
     }
-
 
     public String getNome() {
         return nome;
@@ -20,19 +19,19 @@ public class Servico {
         this.nome = nome;
     }
 
-    public double getValor() {
+    public String getValor() {
         return valor;
     }
 
-    public void setValor(double valor) {
+    public void setValor(String valor) {
         this.valor = valor;
     }
 
-    public int getTempoMinutos() {
+    public String getTempoMinutos() {
         return tempoMinutos;
     }
 
-    public void setTempoMinutos(int tempoMinutos) {
+    public void setTempoMinutos(String tempoMinutos) {
         this.tempoMinutos = tempoMinutos;
     }
 

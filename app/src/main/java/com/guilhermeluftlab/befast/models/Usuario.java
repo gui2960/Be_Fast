@@ -1,5 +1,7 @@
 package com.guilhermeluftlab.befast.models;
 
+
+
 public class Usuario {
     private String fotoPerfil;
     private String nome;
@@ -9,9 +11,11 @@ public class Usuario {
     private String numCelular;
     private String dataNascimento;
     private Endereco endereco;
-    //private ArrayList<Servico> servicos;
+
+
 
     public Usuario() {}
+
 
     public String getFotoPerfil() {
         return fotoPerfil;
@@ -77,15 +81,10 @@ public class Usuario {
         this.endereco = endereco;
     }
 
-    /*
-    public ArrayList<Servico> getServicos() {
-        return servicos;
-    }
 
-    public void setServicos(ArrayList<Servico> servicos) {
-        this.servicos = servicos;
-    }
 
-     */
+
+
+
 
 }

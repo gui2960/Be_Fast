@@ -7,6 +7,10 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.InputType;
+import android.text.TextWatcher;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -28,6 +32,8 @@ public class LoginActivity extends AppCompatActivity {
     private Button entrar;
     private Button registrar;
     private ProgressBar progressBar;
+    private TextView toggleButtonSenha;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +45,50 @@ public class LoginActivity extends AppCompatActivity {
         entrar = findViewById(R.id.buttonLoginEntrar);
         registrar = findViewById(R.id.buttonLoginRegistrar);
         progressBar = findViewById(R.id.progressBarLogin);
+        toggleButtonSenha = findViewById(R.id.textViewShow);
+        toggleButtonSenha.setVisibility(View.GONE);
+
+
+        senha.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    if(senha.getText().length() > 0)
+                        toggleButtonSenha.setVisibility(View.VISIBLE);
+                    else
+                        toggleButtonSenha.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+
+
+
+        toggleButtonSenha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(toggleButtonSenha.getText().equals("MOSTRAR")){
+                    toggleButtonSenha.setText(R.string.toggle_hide);
+                    senha.setTransformationMethod(null);
+                } else{
+                    toggleButtonSenha.setText(R.string.toggle_show);
+                    senha.setTransformationMethod(new PasswordTransformationMethod());
+                }
+            }
+        });
+
+
+
+
 
         registrar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,18 +106,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        /*
-        entrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ControllerUser.getInstance().loginEmailSenha(email.getText().toString(), senha.getText().toString());
-                startActivity(new Intent(getApplicationContext(), UsuarioLogado.class));
 
-            }
-        });
-
-
-         */
 
 
     }
