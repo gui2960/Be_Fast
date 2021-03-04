@@ -6,11 +6,15 @@ import android.util.Log;
 
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.guilhermeluftlab.befast.models.Servico;
 
@@ -36,26 +40,20 @@ public class UpdateServicos extends AsyncTask<Void, Void, Void> {
 
     @Override
     protected Void doInBackground(Void... voids) {
-        FirebaseDatabase.getInstance().getReference().child("Usuario")
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Usuario")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .child("Servicos").addListenerForSingleValueEvent(new ValueEventListener() {
+                .child("Servicos");
+
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                ArrayList<String> nome = new ArrayList<>();
-                ArrayList<String> tempo = new ArrayList<>();
-                ArrayList<String> valor = new ArrayList<>();
-                    for(DataSnapshot a : snapshot.getChildren()) {
-                       String n = a.child("nome").getValue(String.class);
-                       nome.add(n);
-                       String t = a.child("tempoMinutos").getValue(String.class);
-                       tempo.add(t);
-                       String v = a.child("valor").getValue(String.class);
-                       valor.add(v);
-                    }
 
-                    for(int i = 0; i < nome.size(); i++){
-                        activityWeakReference.get().updateListServico(new Servico(nome.get(i), valor.get(i), tempo.get(i)));
-                    }
+                for(DataSnapshot a : snapshot.getChildren()){
+                    activityWeakReference.get().updateListServico(a.getValue(Servico.class));
+                }
+                activityWeakReference.get().updateProgressBar(false);
+                activityWeakReference.get().checkList();
 
             }
 
@@ -65,13 +63,14 @@ public class UpdateServicos extends AsyncTask<Void, Void, Void> {
             }
         });
 
+
         return null;
     }
 
     @Override
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
-        activityWeakReference.get().updateProgressBar(false);
-        activityWeakReference.get().checkList();
+
+
     }
 }

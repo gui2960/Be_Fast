@@ -5,6 +5,8 @@ public class Servico {
     private String valor;
     private String tempoMinutos;
 
+    public Servico(){}
+
     public Servico(String nome, String valor, String tempoMinutos) {
         this.nome = nome;
         this.valor = valor;
