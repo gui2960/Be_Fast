@@ -66,3 +66,10 @@
   Para cada item da lista há um RadioButton para indicar aquele na qual o usuário quer realizar o CRUD
   
   # Atividade 3
+   Todos os dados inseridos no app são salvos no Firebase Database, Firebase Authenticator e Firebase Storage
+   
+   
+  # Atividade 4
+   Não implementado.
+   
+    
