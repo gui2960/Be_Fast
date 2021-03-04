@@ -4,13 +4,13 @@
 #Atividade 1
 
 1. Toggle button
-  - Na tela de login, ao digitiar a senha, o button serve para mostrar e esconder a senha.
+    - Na tela de login, ao digitiar a senha, o button serve para mostrar e esconder a senha.
 
 2. EditText
-  - Em telas como Login e Registrar é possível encontrar os EditText.
+    - Em telas como Login e Registrar é possível encontrar os EditText.
   
 3. Arrays[Lists]
-  - Cada Usuário do sistema possui uma lista de serviços: List<Servico> servicos = new Arraylist<>(); Esta lista armazena, caso o usuário seja um prestador de serviço, cada um deles especificando hora, nome e valor.
+    - Cada Usuário do sistema possui uma lista de serviços: List<Servico> servicos = new Arraylist<>(); Esta lista armazena, caso o usuário seja um prestador de serviço, cada um deles especificando hora, nome e valor.
   
 4. Autocomplete
    - Não implementado.
