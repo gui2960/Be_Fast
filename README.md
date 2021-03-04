@@ -19,7 +19,7 @@
     - Ao se registrar no App é necessário indiciar o sexo, esse processo acontece dentro de um Spinner.
   
 6. RadioButtons
-    - Não implementado.
+    - Na lista de Serviços do usuário é possível percebelos em cima de cada item da lista. Sua função é de indiciar os itens selecionados pelo usuário
    
 7. OptionsMenu
     - Ao se logar no App é possível percebe-los no canto superior direito
@@ -56,3 +56,13 @@
     - Não implementado.
 
 # Atividade 2
+  Ao invés de Activities contendo a list de itens inseridas pelo usuário foi utilizado Fragments.
+  
+    - Ao logar no app, dirija-se a área de Serviços
+    - Se não houve nenhum, irá aparecer: "Nenhum serviço cadastrado"
+    - caso haja ao menos um, irá aparecer uma lista dos serviços que foram cadastrado
+    - todos esses serviços possuem um indicador único para o usuário
+  
+  Para cada item da lista há um RadioButton para indicar aquele na qual o usuário quer realizar o CRUD
+  
+  # Atividade 3
