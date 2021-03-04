@@ -1,6 +1,7 @@
 package com.guilhermeluftlab.befast.ui.servicos;
 
 import android.os.AsyncTask;
+import android.provider.ContactsContract;
 
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,10 @@ import com.google.firebase.database.ValueEventListener;
 import com.guilhermeluftlab.befast.models.Servico;
 
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class UpdateServicos extends AsyncTask<Void, Void, Void> {
     private WeakReference<ServicosLogadoFragment> activityWeakReference;
@@ -32,11 +37,11 @@ public class UpdateServicos extends AsyncTask<Void, Void, Void> {
     protected Void doInBackground(Void... voids) {
         FirebaseDatabase.getInstance().getReference().child("Usuario")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .child("Servicos").addValueEventListener(new ValueEventListener() {
+                .child("Servicos").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot a : snapshot.getChildren())
-                    activityWeakReference.get().updateListServico(a.getValue(Servico.class));
+                    for(DataSnapshot a : snapshot.getChildren())
+                        activityWeakReference.get().updateListServico(a.getValue(Servico.class));
 
             }
 

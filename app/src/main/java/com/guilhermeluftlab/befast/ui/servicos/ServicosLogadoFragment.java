@@ -34,7 +34,7 @@ public class ServicosLogadoFragment extends Fragment{
     private MainViewModel mViewModel;
 
 
-    private List<Servico> servicos = new ArrayList<>();
+    private List<Servico> servicos;
     private ProgressBar progressBar;
 
     //PADRAO
@@ -60,7 +60,7 @@ public class ServicosLogadoFragment extends Fragment{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.main_fragment, container, false);
-
+        servicos = new ArrayList<>();
         edtServ = view.findViewById(R.id.buttonCadastrarServico);
         servicosUsuario = view.findViewById(R.id.listServicosUsuario);
         listaEmpty = view.findViewById(R.id.textViewEmpty);
@@ -72,6 +72,7 @@ public class ServicosLogadoFragment extends Fragment{
         valorDoServico =  view.findViewById(R.id.editTextValorServico);
         finalizar =  view.findViewById(R.id.buttonCadastrarServicoFinalizar);
         cancelar =  view.findViewById(R.id.buttonCadastrarServicoCancelar);
+
 
         new UpdateServicos(this).execute();
 
@@ -174,12 +175,14 @@ public class ServicosLogadoFragment extends Fragment{
         if(servicos.isEmpty()){
             servicosUsuario.setVisibility(View.GONE);
             listaEmpty.setVisibility(View.VISIBLE);
+            edtServ.setVisibility(View.VISIBLE);
         }
         else{
             servicosUsuario.setVisibility(View.VISIBLE);
             RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
             servicosUsuario.setLayoutManager(linearLayoutManager);
             servicosUsuario.setAdapter(new ListaServicosAdapater(servicos));
+            edtServ.setVisibility(View.VISIBLE);
         }
 
     }
