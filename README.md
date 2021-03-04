@@ -1,7 +1,7 @@
 ## Be_Fast
 
 
-#Atividade 1
+##Atividade 1
 
 1. Toggle button
     - Na tela de login, ao digitiar a senha, o button serve para mostrar e esconder a senha.
@@ -55,4 +55,4 @@
 17. Tocar um som
     - Não implementado.
 
-#Atividade 2
+##Atividade 2
