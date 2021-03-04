@@ -2,6 +2,7 @@ package com.guilhermeluftlab.befast.ui.servicos;
 
 import android.os.AsyncTask;
 import android.provider.ContactsContract;
+import android.util.Log;
 
 
 import androidx.annotation.NonNull;
@@ -40,8 +41,21 @@ public class UpdateServicos extends AsyncTask<Void, Void, Void> {
                 .child("Servicos").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    for(DataSnapshot a : snapshot.getChildren())
-                        activityWeakReference.get().updateListServico(a.getValue(Servico.class));
+                ArrayList<String> nome = new ArrayList<>();
+                ArrayList<String> tempo = new ArrayList<>();
+                ArrayList<String> valor = new ArrayList<>();
+                    for(DataSnapshot a : snapshot.getChildren()) {
+                       String n = a.child("nome").getValue(String.class);
+                       nome.add(n);
+                       String t = a.child("tempoMinutos").getValue(String.class);
+                       tempo.add(t);
+                       String v = a.child("valor").getValue(String.class);
+                       valor.add(v);
+                    }
+
+                    for(int i = 0; i < nome.size(); i++){
+                        activityWeakReference.get().updateListServico(new Servico(nome.get(i), valor.get(i), tempo.get(i)));
+                    }
 
             }
 

@@ -15,6 +15,14 @@
         android:layout_weight="1" />
 
     <TextView
+        android:id="@+id/textViewServicoItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Serviço:"
+        android:textStyle="bold" />
+
+    <TextView
         android:id="@+id/text_titulo_servico"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -22,10 +30,26 @@
 
 
     <TextView
+        android:id="@+id/textViewServicoItemValor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Valor:"
+        android:textStyle="bold" />
+
+    <TextView
         android:id="@+id/valor_servico"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="Valor: R$ 10.00" />
+
+    <TextView
+        android:id="@+id/textViewServicoItemTempo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Tempo:"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tempo_servico"

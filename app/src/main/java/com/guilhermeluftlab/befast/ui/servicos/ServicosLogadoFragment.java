@@ -33,9 +33,10 @@ public class ServicosLogadoFragment extends Fragment{
 
     private MainViewModel mViewModel;
 
-
+    private List<Servico> addList;
     private List<Servico> servicos;
     private ProgressBar progressBar;
+
 
     //PADRAO
     private Button edtServ;
@@ -61,6 +62,7 @@ public class ServicosLogadoFragment extends Fragment{
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.main_fragment, container, false);
         servicos = new ArrayList<>();
+        addList = new ArrayList<>();
         edtServ = view.findViewById(R.id.buttonCadastrarServico);
         servicosUsuario = view.findViewById(R.id.listServicosUsuario);
         listaEmpty = view.findViewById(R.id.textViewEmpty);
@@ -74,7 +76,6 @@ public class ServicosLogadoFragment extends Fragment{
         cancelar =  view.findViewById(R.id.buttonCadastrarServicoCancelar);
 
 
-        new UpdateServicos(this).execute();
 
         edtServ.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,7 +149,7 @@ public class ServicosLogadoFragment extends Fragment{
     }
 
     public void salvarServico(){
-        List<Servico> addList = new ArrayList<>();
+
 
         Servico servico = new Servico(nomeDoServico.getText().toString(), valorDoServico.getText().toString(), tempoDoServico.getText().toString());
         addList.add(servico);
@@ -159,8 +160,9 @@ public class ServicosLogadoFragment extends Fragment{
         databaseReference.setValue(addList).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
+                updateListServico(servico);
                 addServicosView(false);
-
+                checkList();
             }
         });
 
@@ -172,12 +174,13 @@ public class ServicosLogadoFragment extends Fragment{
     }
 
     public void checkList(){
-        if(servicos.isEmpty()){
+        if(servicos.size() == 0){
             servicosUsuario.setVisibility(View.GONE);
             listaEmpty.setVisibility(View.VISIBLE);
             edtServ.setVisibility(View.VISIBLE);
         }
         else{
+            listaEmpty.setVisibility(View.GONE);
             servicosUsuario.setVisibility(View.VISIBLE);
             RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
             servicosUsuario.setLayoutManager(linearLayoutManager);
