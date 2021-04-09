@@ -16,9 +16,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
 import com.guilhermeluftlab.befast.R;
-import com.guilhermeluftlab.befast.RegistroCompleto;
-import com.guilhermeluftlab.befast.controllers.ControllerUser;
+
 import com.guilhermeluftlab.befast.models.Usuario;
 import com.guilhermeluftlab.befast.models.endereco.EnderecoRequest;
 
@@ -170,8 +170,7 @@ public class GalleryFragment extends Fragment {
     }
 
     public void updateService(Usuario userLogado){
-        String uri = "content://com.android.providers.media.documents/document/image%3A11086";
-        Glide.with(this).load(Uri.parse(uri)).into(perfilFoto);
+        Glide.with(this).load(FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl()).into(perfilFoto);
         nome2.setText(userLogado.getNome());
         email2.setText(userLogado.getEmail());
         dataNascimento2.setText(userLogado.getDataNascimento());

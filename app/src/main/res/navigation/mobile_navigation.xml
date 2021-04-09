@@ -35,4 +35,10 @@
         android:label="EdtServ"
         tools:layout="@layout/edit_servicos_usuario_fragment" />
 
+    <fragment
+        android:id="@+id/nav_map"
+        android:name="com.guilhermeluftlab.befast.ui.maps.MapsFragment"
+        android:label="Mapa"
+        tools:layout="@layout/fragment_maps" />
+
 </navigation>

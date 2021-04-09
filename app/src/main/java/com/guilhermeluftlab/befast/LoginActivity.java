@@ -22,8 +22,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.guilhermeluftlab.befast.controllers.ControllerUser;
-import com.guilhermeluftlab.befast.models.Usuario;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -110,12 +108,12 @@ public class LoginActivity extends AppCompatActivity {
 
 
     }
-
+    //verificar token
     @Override
     protected void onStart() {
         super.onStart();
 
-        if(ControllerUser.getInstance().getUser() != null) {
+        if(FirebaseAuth.getInstance().getCurrentUser() != null) {
             startActivity(new Intent(getApplicationContext(), UsuarioLogado.class));
             finish();
         }

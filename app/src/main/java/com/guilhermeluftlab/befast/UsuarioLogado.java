@@ -16,11 +16,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.ValueEventListener;
-import com.guilhermeluftlab.befast.async.UpdateUI;
-import com.guilhermeluftlab.befast.controllers.ControllerUser;
+
 import com.guilhermeluftlab.befast.models.Usuario;
 
 import androidx.annotation.NonNull;
@@ -63,7 +59,7 @@ public class UsuarioLogado extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_logout, R.id.servicos_logado)
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_logout, R.id.servicos_logado, R.id.nav_map)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -82,7 +78,7 @@ public class UsuarioLogado extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "You tapped perfil", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.nav_logout:
-                        ControllerUser.getInstance().logOut();
+                        FirebaseAuth.getInstance().signOut();
                         startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                         default:
                             fab.show();

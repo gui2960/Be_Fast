@@ -5,13 +5,13 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.guilhermeluftlab.befast.RegistroCompleto;
-import com.guilhermeluftlab.befast.controllers.ControllerUser;
+
 import com.guilhermeluftlab.befast.models.Usuario;
 
 import java.lang.ref.WeakReference;
@@ -36,7 +36,7 @@ public class UpdateUser extends AsyncTask<Void, Void, Void> {
     protected Void doInBackground(Void... voids) {
         try{
             DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-            String uid = ControllerUser.getInstance().getUser().getUid();
+            String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
             mDatabase.child("Usuario").child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -63,7 +63,6 @@ public class UpdateUser extends AsyncTask<Void, Void, Void> {
 
         return null;
     }
-
 
 
 

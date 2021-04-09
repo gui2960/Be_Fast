@@ -36,7 +36,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.guilhermeluftlab.befast.controllers.ControllerUser;
 import com.guilhermeluftlab.befast.models.Endereco;
 import com.guilhermeluftlab.befast.models.Mask;
 import com.guilhermeluftlab.befast.models.Usuario;
